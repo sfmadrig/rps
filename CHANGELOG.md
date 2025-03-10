@@ -1,3 +1,10 @@
+# [2.23.0](https://github.com/device-management-toolkit/rps/compare/v2.22.15...v2.23.0) (2025-03-10)
+
+
+### Features
+
+* **docker:** add support for devcontainer ([#2025](https://github.com/device-management-toolkit/rps/issues/2025)) ([9cb7249](https://github.com/device-management-toolkit/rps/commit/9cb724929b782657627625cca5f0ab976f2cac35))
+
 ## [2.22.15](https://github.com/open-amt-cloud-toolkit/rps/compare/v2.22.14...v2.22.15) (2025-01-09)
 
 
