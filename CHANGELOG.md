@@ -1,3 +1,10 @@
+# [2.25.0](https://github.com/device-management-toolkit/rps/compare/v2.24.0...v2.25.0) (2025-06-02)
+
+
+### Features
+
+* Secure host based configuration acm ([#2164](https://github.com/device-management-toolkit/rps/issues/2164)) ([a2c82cf](https://github.com/device-management-toolkit/rps/commit/a2c82cfceb74204d51975f1b5bfb4ff9462321c5))
+
 # [2.24.0](https://github.com/device-management-toolkit/rps/compare/v2.23.1...v2.24.0) (2025-03-17)
 
 
