@@ -1,3 +1,10 @@
+# [2.27.0](https://github.com/device-management-toolkit/rps/compare/v2.26.0...v2.27.0) (2025-06-30)
+
+
+### Features
+
+* allow specifying path to ssl certs for postgres ([#2176](https://github.com/device-management-toolkit/rps/issues/2176)) ([04b34eb](https://github.com/device-management-toolkit/rps/commit/04b34eb51ee00978035417577f37d877e7a97ea6))
+
 # [2.26.0](https://github.com/device-management-toolkit/rps/compare/v2.25.1...v2.26.0) (2025-06-30)
 
 
