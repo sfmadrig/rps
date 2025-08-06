@@ -14,7 +14,8 @@ import { NodeForge } from '../../../NodeForge.js'
 import { type ISecretManagerService } from '../../../interfaces/ISecretManagerService.js'
 import { CertManager } from '../../../certManager.js'
 import Logger from '../../../Logger.js'
-import { ClientAction, TlsSigningAuthority } from '../../../models/RCS.Config.js'
+import { ClientAction, TlsMode, TlsSigningAuthority } from '../../../models/RCS.Config.js'
+import { stringify } from 'querystring'
 
 export function adjustTlsConfiguration(amtConfig: AMTConfiguration): AMTConfiguration {
   // default to self-signed if tls is indicated
@@ -27,7 +28,9 @@ export function adjustTlsConfiguration(amtConfig: AMTConfiguration): AMTConfigur
   // clear out authority if it shouldn't be there.
   if (!amtConfig.tlsMode && amtConfig.tlsSigningAuthority) {
     amtConfig.tlsSigningAuthority = null
+    amtConfig.tlsSigningAuthorityURL = null
   }
+
   return amtConfig
 }
 

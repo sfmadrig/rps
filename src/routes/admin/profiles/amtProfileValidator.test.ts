@@ -61,6 +61,7 @@ describe('AMT Profile Validation', () => {
     it('should pass on creation with valid TLS values', async () => {
       req.body.tlsMode = TlsMode.MUTUAL_ONLY
       req.body.tlsSigningAuthority = TlsSigningAuthority.MICROSOFT_CA
+      req.body.tlsSigningAuthorityURL = 'https://www.intel.com'
       await testExpressValidatorMiddleware(req, res, amtProfileValidator())
       const errors = validationResult(req)
       expect(errors.isEmpty()).toBeTruthy()

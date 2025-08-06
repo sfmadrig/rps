@@ -11,6 +11,7 @@ import { AMTUserConsent } from '../../../models/index.js'
 import { adjustRedirectionConfiguration } from './common.js'
 import { jest } from '@jest/globals'
 import { type SpyInstance, spyOn } from 'jest-mock'
+import { tls } from 'node-forge'
 
 describe('Profiles - Create', () => {
   let resSpy
@@ -183,6 +184,23 @@ describe('Profiles - Create', () => {
     })
     expect(writeSecretSpy).not.toHaveBeenNthCalledWith(2, `TLS/${req.body.profileName}`, expect.anything())
   })
+   it('should handle error if TLS certificate authority URL is empty', async () => {
+    req.body = {
+      ...sparseAcmCfg,
+      tlsMode: TlsMode.SERVER_ALLOW_NONTLS,
+      tlsSigningAuthority: TlsSigningAuthority.CUSTOM_CA,
+      verifyTlsSigningAuthorityURL: null
+    }
+    await createProfile(req, resSpy)
+    expect(insertSpy).toHaveBeenCalledWith({
+      ...req.body,
+      amtPassword: 'AMT_PASSWORD',
+      mebxPassword: 'MEBX_PASSWORD',
+
+      ...defaultRedirectionCfgACM
+    })
+   expect(resSpy.status).toHaveBeenCalledWith(500)
+  })
   it(`should set default AMT Redirection Configuration settings for ${ClientAction.ADMINCTLMODE}`, async () => {
     req.body = {
       activation: ClientAction.ADMINCTLMODE
@@ -204,7 +222,7 @@ describe('Profiles - Create', () => {
       userConsent: AMTUserConsent.ALL
     })
   })
-  it('should handle error', async () => {
+  it('should handle error if insert fails', async () => {
     spyOn(req.db.profiles, 'insert').mockResolvedValue(null)
     await createProfile(req, resSpy)
     expect(insertSpy).toHaveBeenCalledWith({

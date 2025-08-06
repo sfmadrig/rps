@@ -64,8 +64,12 @@ export async function createProfile(req: Request, res: Response): Promise<void> 
           throw new Error('Error saving password to secret provider. AMT Profile not inserted')
         }
       }
-      // generate self-signed certificates for use with TLS config if applicable
+      // generate self-signed certificates for use with TLS config if applicable or validate CUSTOM_CA has a TLS Authority URL
       if (amtConfig.tlsMode != null) {
+        if (amtConfig.tlsSigningAuthority === TlsSigningAuthority.CUSTOM_CA && !amtConfig.tlsSigningAuthorityURL) {
+          throw new Error('Error during TLS signing authority validation. You must provide a valid signing authority URL')
+        }
+
         // API compatibility: default to self-signed if no other option is indicated
         if (!amtConfig.tlsSigningAuthority || amtConfig.tlsSigningAuthority === TlsSigningAuthority.SELF_SIGNED) {
           await generateSelfSignedCertificate(req.secretsManager, amtConfig.profileName)

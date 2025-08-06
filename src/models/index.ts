@@ -159,6 +159,7 @@ export class AMTConfiguration {
   tlsMode?: TlsMode
   tlsCerts?: TLSCerts
   tlsSigningAuthority?: TlsSigningAuthority | null
+  tlsSigningAuthorityURL?: string | null
   userConsent?: AMTUserConsent | null
   iderEnabled?: boolean
   kvmEnabled?: boolean

@@ -102,6 +102,10 @@ export const amtProfileValidator = (): ValidationChain[] => [
     .optional({ nullable: true })
     .isIn(Object.values(TlsSigningAuthority))
     .withMessage(`TLS Signing Authority must be one of ${Object.values(TlsSigningAuthority)}`),
+  check('tlsSigningAuthorityURL')
+    .optional({ nullable: true })
+    .matches('^(?:http[s]?://.)?(?:www.)?[-a-zA-Z0-9@%._+~#=]{2,256}.[a-z]{2,6}(?:[-a-zA-Z0-9@:%_+.~#?&//=]*)$')
+    .withMessage(`TLS Signing Authority URL must be a valid URL`),
   check('ciraConfigName')
     .optional({ nullable: true })
     .custom((value, { req }) => {

@@ -288,7 +288,8 @@ export enum TlsMode {
 
 export enum TlsSigningAuthority {
   SELF_SIGNED = 'SelfSigned',
-  MICROSOFT_CA = 'MicrosoftCA'
+  MICROSOFT_CA = 'MicrosoftCA',
+  CUSTOM_CA = 'Chip2Cloud'
 }
 
 export interface connectionParams {
